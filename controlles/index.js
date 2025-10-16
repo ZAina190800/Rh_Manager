@@ -4,7 +4,7 @@ const {
 } = require("./employe")
 
 //Entreprise
-const { CreateEntreprise} = require("./entreprise")
+const { CreateEntreprise, getAllEntreprise} = require("./entreprise")
 
 //Département
 const {
@@ -13,11 +13,15 @@ const {
 
 //Tâche
 const {
-    CreateTache
+    CreateTache, getTache
 } = require("./tache")
 
+//Service
+const {CreateService, getAllService} = require("./service")
+
 const CONTROLLERS = {
-    signUp, CreateDepartement, CreateTache, getDepartement, CreateEntreprise
+    signUp, CreateDepartement, CreateTache, getDepartement, CreateEntreprise, getTache, getAllEntreprise, CreateService,
+    getAllService
 }
 
 module.exports = CONTROLLERS;

@@ -14,12 +14,7 @@ exports.CreateEntreprise = async (req, res, next) => {
             ID_dept
         } = req.body;
 
-         if(!req.file){
-            console.log("Veuillez sélectionner le logo de l'entreprise ")
-            return res.status(400).json({message: "Veuillez sélectionner le logo de l'entreprise"})
-        }
-
-        const logo = req.file ? req.file.name : ""
+        const logo = req.file ? req.file.filename : ""
         
        const datas = {
         "nom": nom_entreprise,
@@ -27,6 +22,7 @@ exports.CreateEntreprise = async (req, res, next) => {
         "email": email_entreprise,
         "secteur d'activité": secteur_activité,
         "date": date_création,
+        "logo": logo,
         "téléphone": téléphone_entreprise
        }
 
@@ -34,6 +30,7 @@ exports.CreateEntreprise = async (req, res, next) => {
 
         //Parcourir les champs afin de vérifier qu'ils ne soient pas vide
         for(const [key, value] of Object.entries(datas)){
+            if(key === "logo") continue
             if(!validateInput(value)){
                 console.log({message: `le champs ${key} ne doit pas être vide`})
                 return res.status(400).json({message: `le champs ${key} ne doit pas être vide`})
@@ -55,12 +52,34 @@ exports.CreateEntreprise = async (req, res, next) => {
             )
         }
 
-        console.log({message: `L'entreprise ${nom_entreprise} a été enregistrer avec succès !`})
-        return res.status(200).json({message: `L'entreprise ${nom_entreprise} a été enregistrer avec succès !`})
+        console.log({message: `L'entreprise ${nom_entreprise} a été enregistrer avec succès !`, entreprise})
+        return res.status(200).json({message: `L'entreprise ${nom_entreprise} a été enregistrer avec succès !`,entreprise})
 
     }
     catch(error){
      next(CreateError(500, "Erreur liée au serveur, veuillez contactez le service administratif pour plus d'information !", error.message))
 
     }
+}
+
+exports.getAllEntreprise = async (req, res, next) => {
+    try{
+
+        const entreprise = await Entreprise.findAll()
+
+        if(!entreprise && entreprise.length > 0){
+            console.log({message: "Désolé, aucune entreprise trouvée"})
+            return res.status(400).json({message: "Désolé, aucune entreprise trouvée"})
+        }
+
+        console.log({message: "Voici la liste des entreprises", entreprise})
+        return res.status(200).json({message: "Voici la liste des entreprises", entreprise})
+
+    }
+    catch(error){
+     next(CreateError(500, "Erreur liée au serveur, veuillez contactez le service administratif pour plus d'information !", error.message))
+
+    }
+
+
 }
