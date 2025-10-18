@@ -21,7 +21,7 @@ const Entreprise = db.define("Entreprise", {
         }
     },
 
-        secteur_activité: {
+        secteur_activite: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -31,7 +31,7 @@ const Entreprise = db.define("Entreprise", {
         allowNull: true
     },
 
-        date_création: {
+        date_creation: {
         type: DataTypes.DATE,
         allowNull: false
     },
@@ -41,7 +41,7 @@ const Entreprise = db.define("Entreprise", {
         allowNull: false
     },
 
-        téléphone_entreprise: {
+        telephone_entreprise: {
         type: DataTypes.INTEGER,
         allowNull: false
     },

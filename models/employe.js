@@ -4,13 +4,13 @@ const Entreprise = require("./entreprise")
 const Service = require("./service")
 const Fonction = require("./fonction")
 
-const Employé = db.define("Employé", {
-    nom_employé: {
+const Employe = db.define("Employe", {
+    nom_employe: {
         type: DataTypes.STRING,
         allowNull: false
     },
 
-    prénom_employé: {
+    prenom_employe: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -25,17 +25,17 @@ const Employé = db.define("Employé", {
         allowNull: false
     },
 
-    adresse_employé: {
+    adresse_employe: {
         type: DataTypes.STRING,
         allowNull: false
     },
 
-    téléphone_employé: {
+    telephone_employe: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
 
-    email_employé: {
+    email_employe: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -88,14 +88,14 @@ const Employé = db.define("Employé", {
         }
     },
 }, {
-    tableName: "Employé",
+    tableName: "Employe",
     timestamps: true
 })
 
-Employé.belongsTo(Entreprise, {foreignKey: 'ID_entreprise', as: 'Entreprise'})
+Employe.belongsTo(Entreprise, {foreignKey: 'ID_entreprise', as: 'Entreprise'})
 
-Employé.belongsTo(Service, {foreignKey: 'ID_service', as: 'Service'})
+Employe.belongsTo(Service, {foreignKey: 'ID_service', as: 'Service'})
 
-Employé.belongsTo(Fonction, {foreignKey: 'ID_fonction', as: 'Fonction'})
+Employe.belongsTo(Fonction, {foreignKey: 'ID_fonction', as: 'Fonction'})
 
-module.exports = Employé
+module.exports = Employe

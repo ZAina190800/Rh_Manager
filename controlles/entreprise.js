@@ -8,9 +8,9 @@ exports.CreateEntreprise = async (req, res, next) => {
         let {nom_entreprise,
             adresse_entreprise,
             email_entreprise,
-            secteur_activité,
-            date_création,
-            téléphone_entreprise,
+            secteur_activite,
+            date_creation,
+            telephone_entreprise,
             ID_dept
         } = req.body;
 
@@ -20,10 +20,10 @@ exports.CreateEntreprise = async (req, res, next) => {
         "nom": nom_entreprise,
         "adresse": adresse_entreprise,
         "email": email_entreprise,
-        "secteur d'activité": secteur_activité,
-        "date": date_création,
+        "secteur d'activité": secteur_activite,
+        "date": date_creation,
         "logo": logo,
-        "téléphone": téléphone_entreprise
+        "téléphone": telephone_entreprise
        }
 
        console.log(datas)
@@ -39,8 +39,8 @@ exports.CreateEntreprise = async (req, res, next) => {
         }
         
         const entreprise = await Entreprise.create({
-            nom_entreprise, adresse_entreprise,email_entreprise, secteur_activité, date_création,logo,
-            téléphone_entreprise: téléphone_entreprise ? `+242${téléphone_entreprise}` : "", ID_dept
+            nom_entreprise, adresse_entreprise,email_entreprise, secteur_activite, date_creation,logo,
+            telephone_entreprise: telephone_entreprise ? `+242${telephone_entreprise}` : "", ID_dept
 
         })
 
@@ -67,7 +67,7 @@ exports.getAllEntreprise = async (req, res, next) => {
 
         const entreprise = await Entreprise.findAll()
 
-        if(!entreprise && entreprise.length > 0){
+        if(!entreprise || entreprise.length === 0){
             console.log({message: "Désolé, aucune entreprise trouvée"})
             return res.status(400).json({message: "Désolé, aucune entreprise trouvée"})
         }

@@ -1,24 +1,24 @@
 const { DataTypes } = require("sequelize")
 const db = require("../config/database")
 
-const Congé = db.define("Congé", {
-    status_congé: {
+const Conge = db.define("Conge", {
+    status_conge: {
         type: DataTypes.BOOLEAN,
         allowNull: true
     },
 
-    date_début_congé: {
+    date_debut_conge: {
         type: DataTypes.DATE,
         allowNull: false
     },
 
-    date_fin_congé: {
+    date_fin_conge: {
         type: DataTypes.DATE,
         allowNull: false
     }
 }, {
-    tableName: "Congé",
+    tableName: "Conge",
     timestamps: true
 })
 
-module.exports = Congé
+module.exports = Conge

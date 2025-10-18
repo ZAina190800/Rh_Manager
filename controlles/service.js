@@ -43,9 +43,9 @@ exports.getAllService = async (req, res, next) => {
 
         const service = await Service.findAll()
 
-        if(!service && service.length > 0){
-            console.log({message: "Désolé, aucun service trouvée"})
-            return res.status(400).json({message: "Désolé, aucun service trouvée"})
+        if(!service || service.length === 0){
+            console.log({message: "Désolé, aucun service trouvé"})
+            return res.status(400).json({message: "Désolé, aucun service trouvé"})
         }
 
         console.log({message: "Voici la liste des services", service})

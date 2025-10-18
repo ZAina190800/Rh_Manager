@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize")
 const db = require("../config/database")
-const Employé = require("./employe")
 const TypeContrat = require("./typecontrat")
+const Employe = require("./employe")
 
 const Contrat = db.define("Contrat", {
     nom_contrat: {
@@ -14,7 +14,7 @@ const Contrat = db.define("Contrat", {
         allowNull: true
     },
 
-    date_début_contrat: {
+    date_debut_contrat: {
         type: DataTypes.DATE,
         allowNull: false
     },
@@ -24,12 +24,12 @@ const Contrat = db.define("Contrat", {
         allowNull: false
     },
 
-    ID_employé: {
+    ID_employe: {
         type: DataTypes.INTEGER,
         allowNull: true,
 
         references:{
-            model: Employé,
+            model: Employe,
             key: 'id'
         }
     },
@@ -48,7 +48,7 @@ const Contrat = db.define("Contrat", {
     timestamps: true
 })
 
-Contrat.belongsTo(Employé, {foreignKey: 'ID_employé', as: 'Employé'})
+Contrat.belongsTo(Employe, {foreignKey: 'ID_employe', as: 'Employe'})
 Contrat.belongsTo(TypeContrat, {foreignKey: 'ID_typec', as: 'TypeContrat'})
 
 module.exports = Contrat;

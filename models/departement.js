@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize")
 const db = require("../config/database")
 
-const Departement = db.define("Département", {
+const Departement = db.define("Departement", {
     
     nom_dept: {
         type: DataTypes.STRING,
@@ -19,7 +19,7 @@ const Departement = db.define("Département", {
     }
 
 }, {
-    tableName:'Département',
+    tableName:'Departement',
     timestamps: true,
 })
 

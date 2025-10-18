@@ -1,16 +1,16 @@
 const { DataTypes } = require("sequelize")
 const db = require("../config/database")
 
-const Tâche = db.define("Tâche", {
-    nom_tâche: {
+const Tache = db.define("Tache", {
+    nom_tache: {
         type: DataTypes.STRING,
         allowNull: false
     }
 }, {
-    tableName: "Tâche",
+    tableName: "Tache",
     timestamps: true
 }
 
 )
 
-module.exports = Tâche;
+module.exports = Tache;

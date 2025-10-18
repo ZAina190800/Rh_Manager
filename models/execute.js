@@ -1,30 +1,30 @@
 const { DataTypes } = require("sequelize")
 const db = require("../config/database")
-const Tâche = require("./tache")
-const Employé = require("./employe")
+const Employe = require("./employe")
+const Tache = require("./tache")
 
-const Exécuter = db.define("Exécuter", {
-    ID_tâche: {
+const Executer = db.define("Executer", {
+    ID_tache: {
         type: DataTypes.INTEGER,
         allowNull: true,
 
         references: {
-            model: Tâche,
+            model: Tache,
             key: 'id'
         }
     },
 
-     ID_employé: {
+     ID_employe: {
         type: DataTypes.INTEGER,
         allowNull: true,
 
         references: {
-            model: Employé,
+            model: Employe,
             key: 'id'
         }
     },
 
-    période: {
+    periode: {
         type: DataTypes.STRING,
         allowNull: false,
 
@@ -32,11 +32,11 @@ const Exécuter = db.define("Exécuter", {
 
 
 }, {
-    tableName: 'Exécuter',
+    tableName: 'Executer',
     timestamps: true
 })
 
-Exécuter.belongsTo(Tâche, {foreignKey: 'ID_tâche', as: 'Tâche'})
-Exécuter.belongsTo(Employé, {foreignKey: 'ID_employé', as: 'Employé'})
+Executer.belongsTo(Tache, {foreignKey: 'ID_tache', as: 'Tache'})
+Executer.belongsTo(Employe, {foreignKey: 'ID_employe', as: 'Employe'})
 
-module.exports = Exécuter;
+module.exports = Executer;

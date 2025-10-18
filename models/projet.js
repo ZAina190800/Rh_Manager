@@ -3,7 +3,7 @@ const db = require("../config/database")
 const Mission = require("./mission")
 
 const Projet = db.define("Projet", {
-    date_début: {
+    date_debut: {
         type: DataTypes.DATE,
         allowNull: false
     },
@@ -13,12 +13,12 @@ const Projet = db.define("Projet", {
         allowNull: false
     },
 
-    coût: {
+    cout: {
         type: DataTypes.STRING,
         allowNull: false
     },
 
-     durée: {
+     duree: {
         type: DataTypes.DATE,
         allowNull: false
     },

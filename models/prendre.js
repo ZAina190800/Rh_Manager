@@ -1,25 +1,25 @@
 const { DataTypes } = require("sequelize")
 const db = require("../config/database")
-const Congé = require("./conge")
-const Employé = require("./employe")
+const Employe = require("./employe")
+const Conge = require("./conge")
 
 const Prendre = db.define('Prendre', {
-    ID_congé: {
+    ID_conge: {
         type: DataTypes.INTEGER,
         allowNull: true,
 
         references: {
-            model: Congé,
+            model: Conge,
             key: 'id'
         }
     },
 
-    ID_employé: {
+    ID_employe: {
         type: DataTypes.INTEGER,
         allowNull: true,
 
         references: {
-            model: Employé,
+            model: Employe,
             key: 'id'
         }
     }
@@ -28,7 +28,7 @@ const Prendre = db.define('Prendre', {
     timestamps: true
 })
 
-Prendre.belongsTo(Congé, {foreignKey: 'ID_congé', as: 'Congé'})
-Prendre.belongsTo(Employé, {foreignKey: 'ID_employé', as: 'Employé'})
+Prendre.belongsTo(Conge, {foreignKey: 'ID_conge', as: 'Conge'})
+Prendre.belongsTo(Employe, {foreignKey: 'ID_employe', as: 'Employe'})
 
 module.exports = Prendre;

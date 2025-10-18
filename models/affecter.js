@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize")
 const db = require("../config/database")
 const Projet = require("./projet")
-const Employé = require("./employe")
+const Employe = require("./employe")
 
 const Affecter = db.define("Affecter", {
     ID_projet: {
@@ -14,12 +14,12 @@ const Affecter = db.define("Affecter", {
         }
     },
 
-     ID_employé: {
+     ID_employe: {
         type: DataTypes.INTEGER,
         allowNull: true,
 
         references: {
-            model: Employé,
+            model: Employe,
             key: 'id'
         }
     },
@@ -36,6 +36,6 @@ const Affecter = db.define("Affecter", {
 
 Affecter.belongsTo(Projet, {foreignKey: 'ID_projet', as:'Projet'})
 
-Affecter.belongsTo(Employé, {foreignKey: 'ID_employé', as:'Employé'})
+Affecter.belongsTo(Employe, {foreignKey: 'ID_employe', as:'Employe'})
 
 module.exports = Affecter;

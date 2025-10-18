@@ -46,7 +46,7 @@ exports.getDepartement = async (req, res, next) => {
     try{
         const departement = await Departement.findAll()
 
-        if(!departement){
+        if(!departement || departement.length === 0){
             console.log({message: "Aucun département trouvé."})
             return res.status(400).json({message: "Aucun département trouvé."})
         }

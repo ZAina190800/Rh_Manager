@@ -1,6 +1,6 @@
 //Employé
 const {
-    signUp
+    signUp, signIn
 } = require("./employe")
 
 //Entreprise
@@ -19,9 +19,12 @@ const {
 //Service
 const {CreateService, getAllService} = require("./service")
 
+//Fonction
+const {CreateFunction, getAllFunction} = require("./fonction")
+
 const CONTROLLERS = {
     signUp, CreateDepartement, CreateTache, getDepartement, CreateEntreprise, getTache, getAllEntreprise, CreateService,
-    getAllService
+    getAllService, CreateFunction, getAllFunction, signIn
 }
 
 module.exports = CONTROLLERS;
