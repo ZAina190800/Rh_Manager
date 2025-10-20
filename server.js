@@ -22,7 +22,7 @@ const Affecter = require("./models/affecter")
 const Exécuter = require("./models/execute")
 
 //Middleware 
-app.use(express.json())
+app.use(express.json())  // Lance le req.body
    
 //Middleware de la route
 const loginUser = require("./router/route")

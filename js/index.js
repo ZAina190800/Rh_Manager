@@ -1,5 +1,5 @@
 function validateInput(input) {
-    if(input !== "" && input !== undefined){
+    if(input !== "" && input !== null && input !== undefined){
         return true
     }
     return false

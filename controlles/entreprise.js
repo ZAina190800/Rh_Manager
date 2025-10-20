@@ -43,6 +43,7 @@ exports.CreateEntreprise = async (req, res, next) => {
             telephone_entreprise: telephone_entreprise ? `+242${telephone_entreprise}` : "", ID_dept
 
         })
+        
 
         if(!entreprise){
             console.log({message: "Une erreur est survenue lors de l'exécusion de l'opération, contactez le service d'administration pour plus d'information!"})
@@ -72,8 +73,10 @@ exports.getAllEntreprise = async (req, res, next) => {
             return res.status(400).json({message: "Désolé, aucune entreprise trouvée"})
         }
 
-        console.log({message: "Voici la liste des entreprises", entreprise})
-        return res.status(200).json({message: "Voici la liste des entreprises", entreprise})
+        const data = entreprise
+
+        console.log({message: "Voici la liste des entreprises", data})
+        return res.status(200).json({message: "Voici la liste des entreprises", data})
 
     }
     catch(error){

@@ -64,4 +64,4 @@ const Entreprise = db.define("Entreprise", {
 
 Entreprise.belongsTo(Departement, {foreignKey: 'ID_dept', as: "Departement"})
 
-module.exports = Entreprise;
+module.exports = Entreprise; 

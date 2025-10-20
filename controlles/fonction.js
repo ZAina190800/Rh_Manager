@@ -51,8 +51,10 @@ exports.getAllFunction = async (req, res, next) => {
             return res.status(400).json({message: "Désolé, aucune fonction trouvée"})
         }
 
-        console.log({message: "Voici la liste des fonctions", fonction})
-        return res.status(200).json({message: "Voici la liste des fonctions", fonction})
+        const data = fonction
+
+        console.log({message: "Voici la liste des fonctions", data})
+        return res.status(200).json({message: "Voici la liste des fonctions", data})
 
     }
     catch(error){

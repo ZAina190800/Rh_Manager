@@ -48,8 +48,10 @@ exports.getAllService = async (req, res, next) => {
             return res.status(400).json({message: "Désolé, aucun service trouvé"})
         }
 
-        console.log({message: "Voici la liste des services", service})
-        return res.status(200).json({message: "Voici la liste des services", service})
+        const data = service
+
+        console.log({message: "Voici la liste des services", data})
+        return res.status(200).json({message: "Voici la liste des services", data})
 
     }
     catch(error){

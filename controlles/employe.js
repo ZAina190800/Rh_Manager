@@ -28,16 +28,16 @@ exports.signUp = async (req, res, next) => {
       } = req.body
 
       const datas = {
-        "nom": nom_employe,
-        "prénom": prenom_employe,
-        "date de naissance": date_naissance,
-        "sexe": sexe,
-        "adresse": adresse_employe,
-        "téléphone": telephone_employe,
-        "email": email_employe,
-        "mot de passe": password,
-        "date d'embauche": date_embauche,
-        "salaire": salaire,
+        "Nom": nom_employe,
+        "Prénom": prenom_employe,
+        "Date de naissance": date_naissance,
+        "Sexe": sexe,
+        "Adresse": adresse_employe,
+        "Téléphone": telephone_employe,
+        "Email": email_employe,
+        "Mot de passe": password,
+        "Date d'embauche": date_embauche,
+        "Salaire": salaire,
       }
 
       console.log(datas)
@@ -74,8 +74,6 @@ exports.signUp = async (req, res, next) => {
 
       //Générer le token
       const token = await jwt.sign({id: employe.id}, ENV.TOKEN, {expiresIn: '24h'})
-
-    
 
       console.log({message: "Inscription réussi", token, employe})
       return res.status(200).json({message: "Inscription réussi", token, employe})

@@ -51,8 +51,10 @@ exports.getDepartement = async (req, res, next) => {
             return res.status(400).json({message: "Aucun département trouvé."})
         }
 
-        console.log({message: "Voici la liste des départements !", departement})
-        return res.status(200).json({message: "Voici la liste des départements  !", departement})
+        const data = departement
+
+        console.log({message: "Voici la liste des départements !", data})
+        return res.status(200).json({message: "Voici la liste des départements  !", data})
 
     }
     catch(error){
