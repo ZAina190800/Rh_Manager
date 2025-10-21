@@ -25,19 +25,19 @@ exports.signUp = async (req, res, next) => {
         ID_service,
         ID_fonction
 
-      } = req.body
+      } = req.body;
 
       const datas = {
-        "Nom": nom_employe,
-        "Prénom": prenom_employe,
-        "Date de naissance": date_naissance,
-        "Sexe": sexe,
-        "Adresse": adresse_employe,
-        "Téléphone": telephone_employe,
-        "Email": email_employe,
-        "Mot de passe": password,
-        "Date d'embauche": date_embauche,
-        "Salaire": salaire,
+        "nom": nom_employe,
+        "prénom": prenom_employe,
+        "date de naissance": date_naissance,
+        "sexe": sexe,
+        "adresse": adresse_employe,
+        "téléphone": telephone_employe,
+        "email": email_employe,
+        "mot de passe": password,
+        "date d'embauche": date_embauche,
+        "salaire": salaire,
       }
 
       console.log(datas)
@@ -49,6 +49,7 @@ exports.signUp = async (req, res, next) => {
             }
         }
       }
+      
       
 
       // Hachage du mot de passe
@@ -74,6 +75,15 @@ exports.signUp = async (req, res, next) => {
 
       //Générer le token
       const token = await jwt.sign({id: employe.id}, ENV.TOKEN, {expiresIn: '24h'})
+      
+      //Créer la cookie
+      res.cookie("acces-token", token, {
+        httpOnly: true, 
+        secure: false,
+        sameSite: 'strict',
+        maxAge: 24 * 60 * 60 * 1000
+
+      })
 
       console.log({message: "Inscription réussi", token, employe})
       return res.status(200).json({message: "Inscription réussi", token, employe})
@@ -103,13 +113,18 @@ exports.signIn = async (req, res, next) => {
       where: {email_employe}
     })
 
+    if(!employe){
+      console.log({message: "Aucun compte trouvé avec cet email."})
+      return res.status(404).json({message: "Aucun compte trouvé avec cet email."})
+    }
+
 
     //Compare le mot de passe de l'employé
     const comparePassword = await bcrypt.compare(password, employe.password)
 
     if(!comparePassword){
-      console.log({message: "Erreur, le mot de passe n'existe pas"})
-      return res.status(400).json({message: "Erreur, le mot de passe n'existe pas"})
+      console.log({message: "Erreur, mot de passe incorrect"})
+      return res.status(400).json({message: "Erreur, mot de passe incorrect"})
     }
 
     //Récupère le token
@@ -123,24 +138,60 @@ exports.signIn = async (req, res, next) => {
         maxAge: 24 * 60 * 60 * 1000 // en milliseconde
       })
 
-      return res.status(200).json({message: `Connexion réeussie, Bienvenue ${employe.nom_employe} ${employe.prenom_employe}`, token, 
-        employe: {
-          nom_employe: employe.nom_employe,
-          prenom_employe: employe.prenom_employe,
-          date_naissance: employe.date_naissance,
-          sexe: employe.sexe,
-          adresse_employe: employe.adresse_employe,
-          telephone_employe: employe.telephone_employe,
-          email_employe: employe.email_employe,
-          date_embauche: employe.date_embauche,
-          salaire: employe.salaire
-
-        }})
+      return res.status(200).json({message: `Connexion réeussie, Bienvenue ${employe.nom_employe} ${employe.prenom_employe}`,
+       token, employe})
      
 
   }
   catch(error){
-     next(CreateError(500, "Erreur liée au serveur, veuillez contactez le service administratif pour plus d'information !", error.message))
+    next(CreateError(500, "Erreur liée au serveur, veuillez contactez le service administratif pour plus d'information !", error.message))
 
+  }
+}
+
+exports.getEmploye = async (req, res, next) => {
+  try{
+
+
+    const id = req.params.id
+
+    const employe = await Employe.findOne({
+      where: {id: id }
+    })
+
+    if(!employe || !employe.length === 0){
+      console.log({message: "Aucun employé trouvé dans la base de données !"})
+      return res.status(400).json({message: "Aucun employé trouvé dans la base de données !"})
+    }
+
+    console.log({message: "l'employé trouvé avec sucès!",employe})
+    return res.status(200).json({message: "l'employé trouvé avec succès !", employe})
+
+  }
+  catch(error){
+    next(CreateError(500, "Erreur liée au serveur, veuillez contactez le service administratif pour plus d'information !", error.message))
+
+  }
+}
+
+exports.getEmployes = async (req, res, next) => {
+  try{
+
+    const employe = await Employe.findAll()
+
+    if(!employe || employe.length === 0 ){
+      console.log({message: "Désolé, aucun employé trouvée, dans la base de données"})
+      return res.status(400).json({message: "Désolé, aucun employé trouvée, dans la base de données"})
+
+    }
+
+    const data = employe
+
+    console.log({message: "Voici la liste des employés", data})
+     return res.status(200).json({message: "Voici la liste des employés", data})
+
+  }
+  catch(error){
+   next(CreateError(500, "Erreur liée au serveur, veuillez contactez le service administratif pour plus d'information !", error.message))
   }
 }

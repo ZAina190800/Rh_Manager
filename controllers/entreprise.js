@@ -69,8 +69,8 @@ exports.getAllEntreprise = async (req, res, next) => {
         const entreprise = await Entreprise.findAll()
 
         if(!entreprise || entreprise.length === 0){
-            console.log({message: "Désolé, aucune entreprise trouvée"})
-            return res.status(400).json({message: "Désolé, aucune entreprise trouvée"})
+            console.log({message: "Désolé, aucune entreprise trouvée, dans la base de données"})
+            return res.status(400).json({message: "Désolé, aucune entreprise trouvée, dans la base de données"})
         }
 
         const data = entreprise
