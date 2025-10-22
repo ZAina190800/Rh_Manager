@@ -39,8 +39,13 @@ exports.CreateEntreprise = async (req, res, next) => {
         }
         
         const entreprise = await Entreprise.create({
-            nom_entreprise, adresse_entreprise,email_entreprise, secteur_activite, date_creation,logo,
-            telephone_entreprise: telephone_entreprise ? `+242${telephone_entreprise}` : "", ID_dept
+            nom_entreprise, 
+            adresse_entreprise,
+            email_entreprise, 
+            secteur_activite, 
+            date_creation,logo,
+            telephone_entreprise: telephone_entreprise ? `+242${telephone_entreprise}` : "", 
+            ID_dept: ID_dept ? parseInt(ID_dept) : null
 
         })
         

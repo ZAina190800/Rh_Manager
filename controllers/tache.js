@@ -44,16 +44,18 @@ exports.CreateTache = async (req, res, next) => {
 exports.getTache = async (req, res, next) => {
     try{
 
+        const id = req.params.id
+
         const tache = await Tâche.findOne({
-            where: {id}
+            where: {id: id}
         })
 
         if(!tache){
-            console.log({message: "Désolé, aucune tâche trouvée."})
-            return res.status(400).json({message: "Désolé, aucune tâche trouvée"})
+            console.log({message: "Désolé, aucune tâche trouvée dans la base de données."})
+            return res.status(400).json({message: "Désolé, aucune tâche trouvée dans la base de données"})
         }
 
-        console.log({message: "La tâche trouvée avec succès !", tâche})
+        console.log({message: "La tâche trouvée avec succès !", tache})
         return res.status(200).json({message: "La tâche trouvée avec succès !", tache})
 
     }

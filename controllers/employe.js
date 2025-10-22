@@ -45,7 +45,8 @@ exports.signUp = async (req, res, next) => {
       for(const [key, value] of Object.entries(datas)){
         if(!validateInput(value)){
            if(!validateInput(value)){
-                return res.status(400).json({message: `le champs ${key} ne doit pas être vide`})
+              console.log({message: `le champs ${key} ne doit pas être vide`})
+              return res.status(400).json({message: `le champs ${key} ne doit pas être vide`})
             }
         }
       }
@@ -62,16 +63,18 @@ exports.signUp = async (req, res, next) => {
         date_naissance,
         sexe,
         adresse_employe,
-        telephone_employe,
+        telephone_employe: telephone_employe ? `+242${telephone_employe}` : "",
         email_employe,
         password: hashedPassword,
         date_embauche,
         salaire,
-        ID_entreprise: ID_entreprise || null,
-        ID_service: ID_service || null,
-        ID_fonction: ID_fonction || null
+        ID_entreprise: ID_entreprise ? parseInt(ID_entreprise) : null,
+        ID_service: ID_service ? parseInt(ID_service) : null,
+        ID_fonction: ID_fonction ? parseInt(ID_fonction) : null
 
       })
+
+     
 
       //Générer le token
       const token = await jwt.sign({id: employe.id}, ENV.TOKEN, {expiresIn: '24h'})
@@ -126,12 +129,17 @@ exports.signIn = async (req, res, next) => {
       console.log({message: "Erreur, mot de passe incorrect"})
       return res.status(400).json({message: "Erreur, mot de passe incorrect"})
     }
+    
+    
+    console.log("Employé trouvé :", employe);
+    console.log("Clé JWT :", ENV.TOKEN);
+
 
     //Récupère le token
     const token = await jwt.sign({id: employe.id}, ENV.TOKEN, {expiresIn: "24h"})
 
     //Création de ma cookie
-    res.cookie("accès_token", token, {
+    res.cookie("acces_token", token, {
         httpOnly: true, // impossible à lire depuis JS côté client
         secure: false,
         sameSite: 'strict',
@@ -144,7 +152,9 @@ exports.signIn = async (req, res, next) => {
 
   }
   catch(error){
-    next(CreateError(500, "Erreur liée au serveur, veuillez contactez le service administratif pour plus d'information !", error.message))
+    console.error("Erreur serveur", error)
+    return res.status(500).json({message: 
+      "Erreur liée au serveur, veuillez contactez le service administratif pour plus d'information !,"})
 
   }
 }
