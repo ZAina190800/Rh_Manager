@@ -42,6 +42,10 @@ Router.get("/getAllFunction", CONTROLLERS.getAllFunction)
 Router.post("/CreateMission", CONTROLLERS.CreateMission)
 Router.get("/getMissions", CONTROLLERS.getMissions)
 
+//Projet
+Router.post("/CreateProjet", CONTROLLERS.CreateProjet)
+Router.get("/getProjets", CONTROLLERS.getProjets)
+
 //Conge
 Router.post('/CreateConge', CONTROLLERS.CreateConge)
 Router.get('/getConges', CONTROLLERS.getConges)

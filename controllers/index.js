@@ -31,13 +31,18 @@ const {CreateFunction, getAllFunction} = require("./fonction")
 //Mission
 const {CreateMission, getMissions} = require("./mission")
 
+//Projet 
+const {CreateProjet, getProjets} = require("./projet")
+
 //Conge
 const {CreateConge, getConges} = require("./conge")
+
+
 
 const CONTROLLERS = {
     signUp, signIn, CreateDepartement, CreateTache, getDepartement, CreateEntreprise, getTache, getAllEntreprise, CreateService,
     getAllService, CreateFunction, getAllFunction, getEmploye, getEmployes, createTypeContrat, getTypeContrat, CreateContrat,
-    getContrat, getContrats, CreateMission, getMissions, CreateConge, getConges
+    getContrat, getContrats, CreateMission, getMissions, CreateConge, getConges, CreateProjet, getProjets
 }
 
 module.exports = CONTROLLERS;
