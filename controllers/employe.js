@@ -190,8 +190,8 @@ exports.getEmployes = async (req, res, next) => {
     const employe = await Employe.findAll()
 
     if(!employe || employe.length === 0 ){
-      console.log({message: "Désolé, aucun employé trouvée, dans la base de données"})
-      return res.status(400).json({message: "Désolé, aucun employé trouvée, dans la base de données"})
+      console.log({message: "Désolé, aucun employé trouvé, dans la base de données"})
+      return res.status(400).json({message: "Désolé, aucun employé trouvé, dans la base de données"})
 
     }
 

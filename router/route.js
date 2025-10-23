@@ -38,4 +38,12 @@ Router.get("/getAllService", CONTROLLERS.getAllService)
 Router.post("/CreateFunction", CONTROLLERS.CreateFunction)
 Router.get("/getAllFunction", CONTROLLERS.getAllFunction)
 
+//Mission 
+Router.post("/CreateMission", CONTROLLERS.CreateMission)
+Router.get("/getMissions", CONTROLLERS.getMissions)
+
+//Conge
+Router.post('/CreateConge', CONTROLLERS.CreateConge)
+Router.get('/getConges', CONTROLLERS.getConges)
+
 module.exports = Router;
