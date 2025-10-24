@@ -13,8 +13,7 @@ const {
 
 //Tâche
 const {
-    CreateTache, getTache
-} = require("./tache")
+    CreateTache, getTache, getTaches} = require("./tache")
 
 //TypeContrat
 const {createTypeContrat, getTypeContrat} = require("./typecontrat")
@@ -26,7 +25,7 @@ const {CreateContrat, getContrat, getContrats} = require("./contrat")
 const {CreateService, getAllService} = require("./service")
 
 //Fonction
-const {CreateFunction, getAllFunction} = require("./fonction")
+const {CreateFunction, getFunction,getAllFunction} = require("./fonction")
 
 //Mission
 const {CreateMission, getMissions} = require("./mission")
@@ -42,7 +41,8 @@ const {CreateConge, getConges} = require("./conge")
 const CONTROLLERS = {
     signUp, signIn, CreateDepartement, CreateTache, getDepartement, CreateEntreprise, getTache, getAllEntreprise, CreateService,
     getAllService, CreateFunction, getAllFunction, getEmploye, getEmployes, createTypeContrat, getTypeContrat, CreateContrat,
-    getContrat, getContrats, CreateMission, getMissions, CreateConge, getConges, CreateProjet, getProjets
+    getContrat, getContrats, CreateMission, getMissions, CreateConge, getConges, CreateProjet, getProjets,
+    getTaches, getFunction
 }
 
 module.exports = CONTROLLERS;

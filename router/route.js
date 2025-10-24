@@ -19,7 +19,8 @@ Router.get('/getEntreprise', CONTROLLERS.getAllEntreprise)
 
 //Tâche
 Router.post('/CreateTache', CONTROLLERS.CreateTache)
-Router.get('/getTache', CONTROLLERS.getTache)
+Router.get('/getTache/:id', CONTROLLERS.getTache)
+Router.get('/getTaches', CONTROLLERS.getTaches)
 
 //TypeContrat
 Router.post('/createTypeContrat', CONTROLLERS.createTypeContrat)
@@ -37,6 +38,7 @@ Router.get("/getAllService", CONTROLLERS.getAllService)
 //Fonction
 Router.post("/CreateFunction", CONTROLLERS.CreateFunction)
 Router.get("/getAllFunction", CONTROLLERS.getAllFunction)
+Router.get("/getFunction/:id", CONTROLLERS.getFunction)
 
 //Mission 
 Router.post("/CreateMission", CONTROLLERS.CreateMission)

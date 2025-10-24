@@ -42,6 +42,35 @@ exports.CreateFunction = async (req, res, next) => {
     }
 }
 
+exports.getFunction = async (req, res, next) => {
+    try{
+        
+        const id = req.params.id;
+
+        const fonction = await Fonction.findOne({
+            where: { id: id}
+        })
+
+        if(!fonction){
+            console.log({message: "Désolé, aucune fonction trouvée dans la base de données."})
+            return res.status(400).json({message: "Désolé, aucune fonction trouvée dans la base de données"})
+        }
+
+         const data = fonction
+        
+        console.log({message: "La fonction trouvée avec succès !", data})
+        return res.status(200).json({message: "La fonction trouvée avec succès !", data})
+
+    }
+    catch(error){
+     next(CreateError(500,"Erreur liée au serveur, veuillez contactez le service administratif pour plus d'information !", error.message))
+
+
+    }
+
+}
+
+
 exports.getAllFunction = async (req, res, next) => {
     try{
         const fonction = await Fonction.findAll()

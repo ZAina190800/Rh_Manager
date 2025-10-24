@@ -55,12 +55,35 @@ exports.getTache = async (req, res, next) => {
             return res.status(400).json({message: "Désolé, aucune tâche trouvée dans la base de données"})
         }
 
-        console.log({message: "La tâche trouvée avec succès !", tache})
-        return res.status(200).json({message: "La tâche trouvée avec succès !", tache})
+        const data = tache
+        
+        console.log({message: "La tâche trouvée avec succès !", data})
+        return res.status(200).json({message: "La tâche trouvée avec succès !", data})
 
     }
     catch(error){
      next(CreateError(500, "Erreur liée au serveur, veuillez contactez le service administratif pour plus d'information !", error.message))
 
+    }
+}
+
+exports.getTaches = async (req, res, next) => {
+    try{
+
+        const tache = await Tâche.findAll()
+
+        if(!tache || tache.length === 0){
+            console.log({message: "Désolé, aucune tâche trouvée"})
+            return res.status(400).json({message: "Désolé, aucune tâche trouvée"})
+        }
+
+        const data = tache
+
+        console.log({message: "Voici la liste des tâches", data})
+        return res.status(200).json({message: "Voici la liste des tâches", data})
+
+    }
+    catch(error){     
+     next(CreateError(500, "Erreur liée au serveur, veuillez contactez le service administratif pour plus d'information !", error.message))
     }
 }

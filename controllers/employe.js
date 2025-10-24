@@ -174,8 +174,10 @@ exports.getEmploye = async (req, res, next) => {
       return res.status(400).json({message: "Aucun employé trouvé dans la base de données !"})
     }
 
-    console.log({message: "l'employé trouvé avec sucès!",employe})
-    return res.status(200).json({message: "l'employé trouvé avec succès !", employe})
+    const data = employe
+
+    console.log({message: "l'employé trouvé avec sucès!", data})
+    return res.status(200).json({message: "l'employé trouvé avec succès !", data})
 
   }
   catch(error){
