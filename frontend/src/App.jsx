@@ -4,9 +4,9 @@ function App() {
 
   return (
     <>
-    <div className='flex justify-center items-center px-4'>
+    <div className='justify-center items-center px-4'>
       <h2 className='text-[14px] text-gray-600 font-bold'>
-        test
+        test sur react avec vite
       </h2>
     </div>
       
