@@ -1,0 +1,24 @@
+# Normaliser les fins de ligne sur LF pour tout le projet
+* text=auto eol=lf
+
+# Garde toujours LF pour le code
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+
+# Garder CRLF pour les fichiers batch Windows (si tu en as)
+*.bat text eol=crlf
+
+# Ne pas toucher aux fichiers binaires
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
