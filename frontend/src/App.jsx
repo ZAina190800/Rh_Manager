@@ -1,12 +1,14 @@
 
+import './App.css'
+
 function App() {
- 
+  
 
   return (
     <>
     <div className='justify-center items-center px-4'>
-      <h2 className='text-[14px] text-gray-600 font-bold'>
-        test sur react avec vite
+      <h2 className='text-[15px] font-bold text-red-500'>
+        test
       </h2>
     </div>
       
